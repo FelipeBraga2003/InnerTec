@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro 2</title>
+</head>
+<body style="background-color: #111111">
+    <!-- barra do cabeçario-->
+    <div style="height: 80px; background-color: #3B3B3B;" >
+    <img style="height: 75px; width: 85px;" src="https://cdn.discordapp.com/attachments/809949757773971506/818255681701281802/INNERTECH.png" alt="">
+    </div>
+    <!--barras laterais --> 
+    <div style="float: left; width: 25.175vw; height: 100vh;"></div> 
+    <div style="float: right; width: 25.175vw; height: 100vh;"></div> 
+
+    <div style="color: #FFFFFF;">
+        <center>
+            <div style="color:#3AF0B7;"> <b><h1>Calculadora Financeira da InnerTech</h1></b> </div> <br>
+            <div> Faça simulações gratuitas de até quanto pode aumentar o seu lucro com o nosso produto!!</div>
+            <br>
+            <div>Obs: Coloque os valores em reais R$ e utilize o ponto no lugar da vírgula.</div>
+            <br>
+        </center>
+    </div>
+
+    <div style="color: #FFFFFF;"> 
+        Digite seu nome: <input id="input_nome" style="float: right;"> 
+        <br><br>
+        Digite a média de quantos kg é produzido por safra: <input id="input_media_kg_mes" style="float: right;"> 
+        <br><br>
+        Digite o valor por kg: <input id="input_valor_kg" style="float: right;"> 
+        <br><br>
+        Digite o valor total pago pelas sementes para gerar essa média: <input id="input_valor_total_semente" style="float: right;"> 
+        <br><br>
+        Digite o valor do gasto geral para produzir essa quantidade  <input id="input_gasto_geral" style="float: right;"> <br>
+        (Ex: Água, Funcioário, etc):
+        <br><br>
+        <center>
+            <button onclick="calculo()" style="background-color: #3AF0B7; color: #FFFFFF;">Calcular Lucro</button>
+        </center>
+        <br>
+    </div>
+
+    <div id="conteudo" style="color: #FFFFFF;"></div>
+  
+</body>
+</html>
+
+<script>
+    function calculo() {
+        var nome = input_nome.value;
+        var mediaKgMes = Number(input_media_kg_mes.value);
+        var valorKg = Number(input_valor_kg.value);
+        var gastoGeral = Number(input_gasto_geral.value);
+        var valorTotalSemente = Number(input_valor_total_semente.value);
+        // Lucro sem o nosso produto
+        var lucroBruto = mediaKgMes * valorKg;
+        var lucroLiquido = lucroBruto - (valorTotalSemente + gastoGeral);
+        // lucro com o nosso produto
+        var lucroBrutoAumento = (mediaKgMes * 1.27) * valorKg; // (mediaKgMes * ((100/ 100) + (27 / 100) )) * valorKg;
+        var lucroLiquidoAumento = lucroBrutoAumento - ((valorTotalSemente * 1.27) + gastoGeral);
+        // diferença entre o lucro sem e com o nosso prodduto 
+        var difernca = lucroLiquidoAumento - lucroLiquido;
+
+        //mostrar o resultado do calculo
+        conteudo.innerHTML = `<center>Olá ${nome}, seu lucro é de R$ ${lucroLiquido} e com o nosso sistema passa a ser de R$ ${lucroLiquidoAumento}, tendo um aumento de lucro ou diminuição de gastos de até R$ ${difernca} </center>`;
+
+    }
+</script>
